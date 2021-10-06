@@ -1,6 +1,14 @@
 '''
 基于模板匹配的方法获取到 大图中 缺口位置的对应坐标px
 需要：原图（大图），缺口（小图），返回的缺口起始坐标y
+
+请求滑块的json例子信息如下：其中initx，inity表示用户滑动缺口时的初始位置
+cdnPic1: "/hycdn?index=1&image=936943957294983168"
+cdnPic2: "/hycdn?index=2&image=936943957294983168"
+initx: "68"
+inity: "67"
+ret: "0"
+sess: ""
 '''
 
 import cv2
