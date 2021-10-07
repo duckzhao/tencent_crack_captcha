@@ -63,13 +63,14 @@ def find_contours(proi_img, roi_img_rbg):
     for i in range(len(contours)):
         # 计算当前轮廓的面积
         area = cv2.contourArea(contours[i])
+        # print(area)
         # 过滤面积过大和过小的轮廓
         if area > 5000 and area < 9000:
             cv2.drawContours(draw_img, contours, i, (0, 0, 0), 1)
             # 求最大外接矩形
             x, y, w, h = cv2.boundingRect(contours[i])
             # 过滤最小外接矩形面积过大或过小的轮廓
-            if not ((w * h) > 10000 or (w * h) < 7000):
+            if not ((w * h) > 12000 or (w * h) < 7000):
                 cv2.rectangle(draw_img, (x, y), (x + w, y + h), color=(255, 0, 0), thickness=2)
                 # print(w*h)
                 show_img(draw_img)
@@ -105,8 +106,8 @@ if __name__ == '__main__':
     captcha_width = 680
     # 缺口（小图）起始的坐标 y，请求验证码时返回的json文件中可以获取到
     # 以下为测试文件中的7个缺口起始 y 坐标
-    init_y_list = [30, 86, 82, 158, 32, 30, 50]
-    for i in range(7):
+    init_y_list = [30, 86, 82, 158, 32, 30, 50, 56, 106, 30]
+    for i in range(10):
         run('{}.jpg'.format(i + 1))
 
 '''
