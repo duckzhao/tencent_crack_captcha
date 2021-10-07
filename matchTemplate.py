@@ -116,14 +116,14 @@ def run2(bing_img_path, small_img_path):
     roi_img_gray, roi_img_rbg = get_roi(big_img, init_y)
     threshold1 = cv2.adaptiveThreshold(src=roi_img_gray, maxValue=255, adaptiveMethod=cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
                                       thresholdType=cv2.THRESH_BINARY_INV, blockSize=115, C=1)
-    show_img(threshold1)
+    # show_img(threshold1)
 
     # 读取匹配的缺口图
     small_img = cv2.imread(small_img_path, -1)
     small_img = cv2.cvtColor(alpha2white(small_img), cv2.COLOR_BGR2GRAY)
     height, width = small_img.shape
     ret, threshold = cv2.threshold(src=small_img, thresh=1, maxval=255, type=cv2.THRESH_BINARY)
-    show_img(threshold)
+    # show_img(threshold)
 
     res = cv2.matchTemplate(image=threshold1, templ=threshold, method=cv2.TM_CCOEFF_NORMED)
     # print(res)
@@ -132,6 +132,7 @@ def run2(bing_img_path, small_img_path):
     for pt in zip(*loc[::-1]):
         # 指定左上和右下坐标 画矩形
         cv2.rectangle(roi_img_rbg, pt, (pt[0] + width, pt[1] + height), color=(0, 0, 255), thickness=2)
+        print(pt[0])
     show_img(roi_img_rbg)
 
 if __name__ == '__main__':
